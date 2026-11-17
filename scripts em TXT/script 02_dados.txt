@@ -1,0 +1,47 @@
+PRAGMA foreign_keys = ON;
+
+-- GARÇONS (galera, utilizem comentários SEMPRE para guiar os itens inseridos)
+INSERT INTO garcons (nome)
+VALUES
+    ('Ana'), ('Maria'), ('José'), ('Rai'), ('Durval'), ('Cleber');
+
+-- MESAS
+INSERT INTO mesas (numero, capacidade)
+VALUES
+    (1, 4), (2, 4), (3, 4), (4, 4), (5, 2), (6, 2), (7, 2), (8, 2), (9, 6), (10, 6);
+
+-- CATEGORIAS
+INSERT INTO categorias (nome)
+VALUES
+    ('Bebidas'), ('Entradas'), ('Prato principal'), ('Sobremesa');
+
+-- BEBIDAS
+INSERT INTO produtos (id_categoria, nome, preco_centavos)
+VALUES
+    ((SELECT id_categoria FROM categorias WHERE nome = 'Bebidas'), 'Suco de Laranja', 1200), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Bebidas'), 'Refrigerante', 1000), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Bebidas'), 'Taça de Vinho', 1800), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Bebidas'), 'Água', 600);
+
+-- ENTRADAS
+INSERT INTO produtos (id_categoria, nome, preco_centavos)
+VALUES
+    ((SELECT id_categoria FROM categorias WHERE nome = 'Entradas'), 'Patê de frango', 1800), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Entradas'), 'Sopa de cebola', 1400), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Entradas'), 'Pastel de carne', 1600);
+
+-- PRATOS PRINCIPAIS
+INSERT INTO produtos (id_categoria, nome, preco_centavos)
+VALUES
+    ((SELECT id_categoria FROM categorias WHERE nome = 'Prato principal'), 'Frango Marinado', 3500), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Prato principal'), 'Carne de sol com Nata', 4200), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Prato principal'), 'Tilápia com purê de Banana', 5300);
+
+-- SOBREMESAS
+INSERT INTO produtos (id_categoria, nome, preco_centavos)
+VALUES
+    ((SELECT id_categoria FROM categorias WHERE nome = 'Sobremesa'), 'Pavê de coco com tapioca', 2100), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Sobremesa'), 'Cartola trufado', 2600), 
+	((SELECT id_categoria FROM categorias WHERE nome = 'Sobremesa'), 'Sorvete de manga em calda', 1600);
+
+COMMIT;
